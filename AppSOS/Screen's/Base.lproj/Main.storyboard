@@ -208,17 +208,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qxL-Jb-7Cg" secondAttribute="trailing" id="x64-su-ywi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CarLinkSOS" id="Dza-ct-Ztw">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="car.fill" catalog="system" id="UqD-pd-P5N">
-                            <connections>
-                                <segue destination="ueU-0x-xmy" kind="show" id="l9Z-Sx-Auf"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="clock.fill" catalog="system" id="KEn-5r-bfh">
-                            <connections>
-                                <segue destination="dgA-RE-NhH" kind="show" identifier="segueHistorial" id="c3M-4P-oW8"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="CarLinkSOS" id="XLv-iQ-s8l">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="car.fill" catalog="system" id="69B-i4-BgN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="clock.fill" catalog="system" id="rEi-WP-aOL"/>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomPanel" destination="qxL-Jb-7Cg" id="dn9-YQ-f9J"/>
@@ -685,6 +677,52 @@
             </objects>
             <point key="canvasLocation" x="4004" y="165"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="6jO-M8-IK3">
+            <objects>
+                <viewController id="mwq-yB-ntE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EKw-H7-bxh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qef-Aa-1w9">
+                                <rect key="frame" x="31" y="121" width="332" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingresa tus datos de acceso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lO8-gN-maN">
+                                <rect key="frame" x="24" y="278" width="214" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoA-kr-Wkh">
+                                <rect key="frame" x="31" y="724" width="332" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Iniciar sesion">
+                                    <backgroundConfiguration key="background" cornerRadius="25">
+                                        <color key="backgroundColor" red="0.24313725490196078" green="0.15294117647058825" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="¡Bienvenido de Nuevo!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8N-Je-fYD">
+                                <rect key="frame" x="31" y="205" width="265" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Ki-nr-R18"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lVv-hR-VlU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wme-Py-Kgc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1049.6183206106871" y="-568.30985915492965"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bdd-fj-2IV">
             <objects>
@@ -832,6 +870,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQc-tR-SBj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="142.74809160305344" y="1538.7323943661972"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fuJ-hk-Q3x">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3LV-Kz-ODJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="48J-eF-bMq">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mwq-yB-ntE" kind="relationship" relationship="rootViewController" id="WyA-CZ-Vas"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7J-aq-8Ne" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122.90076335877862" y="-568.30985915492965"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
