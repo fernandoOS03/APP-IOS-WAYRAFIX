@@ -7,18 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9908A1DB2F916FA100A1196D /* VehiculoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908A1D92F916FA100A1196D /* VehiculoEntity+CoreDataClass.swift */; };
-		9908A1DC2F916FA100A1196D /* VehiculoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908A1DA2F916FA100A1196D /* VehiculoEntity+CoreDataProperties.swift */; };
-		9908A1DD2F916FA100A1196D /* ServicioEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908A1D72F916FA100A1196D /* ServicioEntity+CoreDataClass.swift */; };
-		9908A1DE2F916FA100A1196D /* ServicioEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908A1D82F916FA100A1196D /* ServicioEntity+CoreDataProperties.swift */; };
 		99D4C7202F88997E007B4181 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D4C71F2F88997E007B4181 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9908A1D72F916FA100A1196D /* ServicioEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServicioEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9908A1D82F916FA100A1196D /* ServicioEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServicioEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9908A1D92F916FA100A1196D /* VehiculoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VehiculoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9908A1DA2F916FA100A1196D /* VehiculoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VehiculoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		99D4C7032F88995E007B4181 /* AppSOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppSOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D4C71F2F88997E007B4181 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -27,7 +19,7 @@
 		99D4C7182F889961007B4181 /* Exceptions for "AppSOS" folder in "AppSOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				App/Info.plist,
 			);
 			target = 99D4C7022F88995E007B4181 /* AppSOS */;
 		};
@@ -59,10 +51,6 @@
 		99D4C6FA2F88995E007B4181 = {
 			isa = PBXGroup;
 			children = (
-				9908A1D72F916FA100A1196D /* ServicioEntity+CoreDataClass.swift */,
-				9908A1D82F916FA100A1196D /* ServicioEntity+CoreDataProperties.swift */,
-				9908A1D92F916FA100A1196D /* VehiculoEntity+CoreDataClass.swift */,
-				9908A1DA2F916FA100A1196D /* VehiculoEntity+CoreDataProperties.swift */,
 				99D4C7052F88995E007B4181 /* AppSOS */,
 				99D4C71E2F88997D007B4181 /* Frameworks */,
 				99D4C7042F88995E007B4181 /* Products */,
@@ -159,10 +147,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9908A1DB2F916FA100A1196D /* VehiculoEntity+CoreDataClass.swift in Sources */,
-				9908A1DC2F916FA100A1196D /* VehiculoEntity+CoreDataProperties.swift in Sources */,
-				9908A1DD2F916FA100A1196D /* ServicioEntity+CoreDataClass.swift in Sources */,
-				9908A1DE2F916FA100A1196D /* ServicioEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
