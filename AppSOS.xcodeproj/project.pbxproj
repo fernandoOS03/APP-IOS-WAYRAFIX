@@ -16,10 +16,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		99D4C7182F889961007B4181 /* Exceptions for "AppSOS" folder in "AppSOS" target */ = {
+		5AA51C8B2F95C0EA00D1CE75 /* Exceptions for "AppSOS" folder in "AppSOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				App/Info.plist,
+				Info.plist,
 			);
 			target = 99D4C7022F88995E007B4181 /* AppSOS */;
 		};
@@ -29,7 +29,7 @@
 		99D4C7052F88995E007B4181 /* AppSOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				99D4C7182F889961007B4181 /* Exceptions for "AppSOS" folder in "AppSOS" target */,
+				5AA51C8B2F95C0EA00D1CE75 /* Exceptions for "AppSOS" folder in "AppSOS" target */,
 			);
 			path = AppSOS;
 			sourceTree = "<group>";
