@@ -20,8 +20,12 @@ class ElegirVehiculoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = WayraTheme.background
+        title = "Selecciona vehículo"
         tblVehiculos.delegate = self
         tblVehiculos.dataSource = self
+        tblVehiculos.backgroundColor = .clear
+        tblVehiculos.separatorStyle = .none
         cargarVehiculos()
     }
     
@@ -45,11 +49,24 @@ extension ElegirVehiculoViewController: UITableViewDelegate, UITableViewDataSour
         let celda = tableView.dequeueReusableCell(withIdentifier: "autoSosCell", for: indexPath)
         let auto = listaVehiculos[indexPath.row]
         
-        celda.textLabel?.text = auto.placa
-        celda.detailTextLabel?.text = "\(auto.marca ?? "") \(auto.modelo ?? "")"
-        celda.imageView?.image = UIImage(systemName: "car.circle.fill")
+        celda.backgroundColor = .clear
+        celda.selectionStyle = .none
+        var config = celda.defaultContentConfiguration()
+        config.text = auto.placa
+        config.secondaryText = "\(auto.marca ?? "") \(auto.modelo ?? "")"
+        config.textProperties.font = .boldSystemFont(ofSize: 18)
+        config.secondaryTextProperties.color = WayraTheme.textSecondary
+        config.image = UIImage(systemName: "car.circle.fill")
+        config.imageProperties.tintColor = WayraTheme.accent
+        celda.contentConfiguration = config
+        celda.layer.cornerRadius = 18
+        celda.layer.masksToBounds = true
         
         return celda
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        82
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
