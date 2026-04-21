@@ -30,30 +30,81 @@ class AgregarVehiculoViewController: UIViewController {
         
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(ocultarTeclado))
-            view.addGestureRecognizer(tap)
-            
-            btnGuardar.layer.cornerRadius = 10
-            
-            configurarMenuTipoVehiculo()
-            configurarMenuTipoCombustible()
-            
-            if let vehiculo = vehiculoAEditar {
-                title = "Editar Vehículo"
-                btnGuardar.setTitle("ACTUALIZAR DATOS", for: .normal)
-                txtPlaca.text = vehiculo.placa
-                txtMarca.text = vehiculo.marca
-                tipoVehiculoSeleccionado = vehiculo.tipoVehiculo ?? ""
-                btnTipoVehiculo.setTitle(tipoVehiculoSeleccionado, for: .normal)
-            }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ocultarTeclado))
+        view.addGestureRecognizer(tap)
+        
+        styleUI()
+        configurarMenuTipoVehiculo()
+        configurarMenuTipoCombustible()
+        btnGuardar.addTarget(self, action: #selector(btnGuardarTapped(_:)), for: .touchUpInside)
+        
+        if let vehiculo = vehiculoAEditar {
+            title = "Editar Vehículo"
+            btnGuardar.configuration?.title = "Actualizar Vehículo"
+            txtPlaca.text = vehiculo.placa
+            txtMarca.text = vehiculo.marca
+            txtModelo.text = vehiculo.modelo
+            txtAnio.text = vehiculo.anio == 0 ? nil : "\(vehiculo.anio)"
+            txtColor.text = vehiculo.color
+            txtVin.text = vehiculo.vin
+            tipoVehiculoSeleccionado = vehiculo.tipoVehiculo ?? ""
+            tipoCombustibleSeleccionado = vehiculo.tipoCombustible ?? ""
+            btnTipoVehiculo.setTitle(tipoVehiculoSeleccionado, for: .normal)
+            btnTipoCombustible.setTitle(tipoCombustibleSeleccionado, for: .normal)
+            scTransmision.selectedSegmentIndex = (vehiculo.transmision == "Manual") ? 1 : 0
+        }
+    }
+    
+    func styleUI() {
+        view.backgroundColor = WayraTheme.background
+        title = "Agregar Vehículo"
+        btnGuardar.applyAccentStyle(title: "Guardar Vehículo")
+        btnGuardar.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        btnGuardar.layer.cornerRadius = 26
+        btnGuardar.layer.masksToBounds = true
+        
+        scTransmision.selectedSegmentTintColor = WayraTheme.primary
+        scTransmision.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 20)], for: .selected)
+        scTransmision.setTitleTextAttributes([.foregroundColor: WayraTheme.textPrimary, .font: UIFont.boldSystemFont(ofSize: 20)], for: .normal)
+        scTransmision.backgroundColor = .white
+        scTransmision.layer.cornerRadius = 28
+        scTransmision.layer.borderWidth = 1
+        scTransmision.layer.borderColor = WayraTheme.primary.cgColor
+        scTransmision.layer.masksToBounds = true
+        
+        [txtPlaca, txtMarca, txtModelo, txtAnio, txtColor, txtVin].forEach {
+            $0?.backgroundColor = .white
+            $0?.layer.cornerRadius = 16
+            $0?.layer.borderWidth = 1
+            $0?.layer.borderColor = WayraTheme.divider.cgColor
+            $0?.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 10))
+            $0?.leftViewMode = .always
+            $0?.font = .systemFont(ofSize: 18, weight: .medium)
+            $0?.textColor = WayraTheme.textPrimary
+            $0?.attributedPlaceholder = NSAttributedString(
+                string: $0?.placeholder ?? "",
+                attributes: [.foregroundColor: WayraTheme.textSecondary]
+            )
         }
         
-        @objc func ocultarTeclado() {
-            view.endEditing(true)
+        [btnTipoVehiculo, btnTipoCombustible].forEach {
+            $0?.backgroundColor = .white
+            $0?.layer.cornerRadius = 16
+            $0?.layer.borderWidth = 1
+            $0?.layer.borderColor = WayraTheme.divider.cgColor
+            $0?.setTitleColor(WayraTheme.textPrimary, for: .normal)
+            $0?.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+            $0?.contentHorizontalAlignment = .left
+            $0?.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 14)
         }
+    }
+        
+    @objc func ocultarTeclado() {
+        view.endEditing(true)
+    }
 
         func configurarMenuTipoVehiculo() {
             let opciones = ["Sedán", "Hatchback", "SUV", "Pick-up", "Minivan", "Motocicleta"]
@@ -83,19 +134,19 @@ class AgregarVehiculoViewController: UIViewController {
             btnTipoCombustible.showsMenuAsPrimaryAction = true
         }
 
-        @IBAction func btnGuardarTapped(_ sender: UIButton) {
+    @IBAction func btnGuardarTapped(_ sender: UIButton) {
             guard let placa = txtPlaca.text, !placa.isEmpty,
                   let marca = txtMarca.text, !marca.isEmpty,
                   let modelo = txtModelo.text, !modelo.isEmpty,
                   let anioStr = txtAnio.text, let anio = Int16(anioStr),
                   let color = txtColor.text, !color.isEmpty,
                   let vin = txtVin.text, !vin.isEmpty else {
-                print("Faltan campos de texto.")
+                mostrarAlerta(titulo: "Campos incompletos", mensaje: "Completa todos los datos del vehículo.")
                 return
             }
             
             if tipoVehiculoSeleccionado.isEmpty || tipoCombustibleSeleccionado.isEmpty {
-                print("Faltan menús desplegables.")
+                mostrarAlerta(titulo: "Campos incompletos", mensaje: "Selecciona el tipo de vehículo y combustible.")
                 return
             }
 
@@ -103,16 +154,16 @@ class AgregarVehiculoViewController: UIViewController {
             let indiceSeleccionado = scTransmision.selectedSegmentIndex
             let transmision = scTransmision.titleForSegment(at: indiceSeleccionado) ?? "No definido"
 
-            let nuevo = VehiculoEntity(context: self.context)
-            nuevo.placa = placa.uppercased()
-            nuevo.marca = marca
-            nuevo.modelo = modelo
-            nuevo.anio = Int64(anio)
-            nuevo.color = color
-            nuevo.vin = vin.uppercased()
-            nuevo.tipoVehiculo = tipoVehiculoSeleccionado
-            nuevo.tipoCombustible = tipoCombustibleSeleccionado
-            nuevo.transmision = transmision
+            let registro = vehiculoAEditar ?? VehiculoEntity(context: self.context)
+            registro.placa = placa.uppercased()
+            registro.marca = marca
+            registro.modelo = modelo
+            registro.anio = Int64(anio)
+            registro.color = color
+            registro.vin = vin.uppercased()
+            registro.tipoVehiculo = tipoVehiculoSeleccionado
+            registro.tipoCombustible = tipoCombustibleSeleccionado
+            registro.transmision = transmision
             
             do {
                 try context.save()
@@ -121,5 +172,11 @@ class AgregarVehiculoViewController: UIViewController {
             } catch {
                 print("Error al guardar: \(error)")
             }
-        }
     }
+    
+    func mostrarAlerta(titulo: String, mensaje: String) {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        alerta.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alerta, animated: true)
+    }
+}
